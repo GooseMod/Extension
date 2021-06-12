@@ -8,8 +8,8 @@
     "homepage_url": "https://goosemod.com",
 
     "icons": {
-        "48": "icon48.png",
-        "96": "icon96.png"
+        "48": "icons/48.png",
+        "96": "icons/96.png"
     },
 
     "background": {
