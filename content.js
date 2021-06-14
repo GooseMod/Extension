@@ -57,4 +57,10 @@ const inject = () => {
 };
 
 // Delay actual injection to fix FF issues
-setTimeout(inject, 100);
+// setTimeout(inject, 100);
+
+let el = document.createElement('script');
+
+el.appendChild(document.createTextNode(`(${inject.toString()})()`));
+
+document.body.appendChild(el);
