@@ -1,14 +1,17 @@
-# GooseMod Extension
+<h1 align="center">
+<sub>
+<img src="https://raw.githubusercontent.com/GooseMod/Extension/main/icons/48.png" height="38" width="38">
+</sub>
+GooseMod for Web
+</h1>
 
-Browser extension for injecting GooseMod into Discord's web client.
+<p align="center">
+<a href="https://addons.mozilla.org/addon/goosemod-for-web/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get GooseMod for Web for Firefox"></a> 
+<!-- <a href="https://chrome.google.com/webstore/detail/..."><img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get GooseMod for Web for Chromium"></a> -->
+</p>
 
+***
 
-## Installation
-
-### Chromium-based
-
-1. Clone this repo
-2. Go to `chrome://extensions`
-3. Enable developer mode (toggle in top right)
-4. Click load unpacked button
-5. Load the path where you cloned the repo
+<p align="center">
+<strong>A light, secure, and easy to use Discord mod; now in your browser.</strong>
+</p>
