@@ -1,4 +1,6 @@
-const inject = () => {
+const inject = async () => {
+  console.log('[GooseMod for Web] Injecting...');
+
   // Re-add localStorage as Discord removes it
   function getLocalStoragePropertyDescriptor() {
     const frame = document.createElement('frame');
@@ -15,36 +17,27 @@ const inject = () => {
   
   Object.defineProperty(window, 'localStorage', getLocalStoragePropertyDescriptor());
   
-  
+  console.log('[GooseMod for Web] Redefined localStorage');
+
   const branchURLs = {
     'release': 'https://api.goosemod.com/inject.js',
     'dev': 'https://updates.goosemod.com/guapi/goosemod/dev'
   };
   
   const branch = localStorage.getItem('goosemodUntetheredBranch') || 'release';
-    
-  let jsCache = JSON.parse(localStorage.getItem('goosemodCoreJSCache'));
 
-  const updateCache = async () => {
-    jsCache = {};
+  console.log('[GooseMod for Web] Branch =', branch);
+  console.log('[GooseMod for Web] JS Url =', branchURLs[branch]);
   
-    jsCache.js = await (await fetch(branchURLs[branch])).text();
-    jsCache.hash = jsCache.js.match(/hash:"(.*?)"/);
+  const js = await (await fetch(branchURLs[branch])).text(); // JSON.parse(localStorage.getItem('goosemodCoreJSCache'));
+
+  const el = document.createElement('script');
   
-    localStorage.setItem('goosemodCoreJSCache', JSON.stringify(jsCache));
-  };
+  el.appendChild(document.createTextNode(js));
   
-  (async function() {
-    if (!jsCache) await updateCache();
-  
-    const el = document.createElement('script')
-  
-    el.appendChild(document.createTextNode(jsCache.js))
-  
-    document.body.appendChild(el);
-  
-    updateCache();
-  })();
+  document.body.appendChild(el);
+
+  console.log('[GooseMod for Web] Injected fetched JS');
 };
 
 // Delay actual injection to fix FF issues
