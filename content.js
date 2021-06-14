@@ -1,3 +1,20 @@
+// Re-add localStorage (Discord removes it)
+function getLocalStoragePropertyDescriptor() {
+  const frame = document.createElement('frame');
+  frame.src = 'about:blank';
+
+  document.body.appendChild(frame);
+
+  let r = Object.getOwnPropertyDescriptor(frame.contentWindow, 'localStorage');
+
+  frame.remove();
+
+  return r;
+}
+
+Object.defineProperty(window, 'localStorage', getLocalStoragePropertyDescriptor());
+
+
 const branchURLs = {
   'release': 'https://goosemod-api.netlify.app/inject.js',
   'dev': `https://raw.githubusercontent.com/GooseMod/GooseMod/master/dist/index.js?_=${Date.now()}`
