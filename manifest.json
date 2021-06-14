@@ -9,7 +9,8 @@
 
     "icons": {
         "48": "icons/48.png",
-        "96": "icons/96.png"
+        "96": "icons/96.png",
+        "128": "icons/128.png"
     },
 
     "background": {
