@@ -27,6 +27,8 @@ chrome.webRequest.onHeadersReceived.addListener(({ responseHeaders, url }) => {
     cors.value = '*';
   }
 
+  console.log(csp);
+
 	return {
     responseHeaders
   };
