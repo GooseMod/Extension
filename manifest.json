@@ -35,7 +35,7 @@
 
     "browser_specific_settings": {
         "gecko": {
-            "id": "invalid@goosemod.com"
+            "id": "web@goosemod.com"
         }
     }
 }
