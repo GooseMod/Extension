@@ -18,22 +18,13 @@ const inject = () => {
   
   const branchURLs = {
     'release': 'https://api.goosemod.com/inject.js',
-    'dev': `https://github.com/GooseMod/GooseMod/releases/download/dev/index.js?_=${Date.now()}`
+    'dev': 'https://updates.goosemod.com/guapi/goosemod/dev'
   };
   
   const branch = localStorage.getItem('goosemodUntetheredBranch') || 'release';
-  
-  
+    
   let jsCache = JSON.parse(localStorage.getItem('goosemodCoreJSCache'));
-  
-  console.log(branchURLs[branch]);
-  
-  try {
-    fetch(branchURLs[branch]);
-  } catch (e) {
-    console.error(e);
-  }
-  
+
   const updateCache = async () => {
     jsCache = {};
   
