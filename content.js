@@ -1,7 +1,7 @@
 const inject = async () => {
   console.log('[GooseMod for Web] Injecting...');
 
-  // Re-add localStorage as Discord removes it
+  // Re-define localStorage as Discord removes it
   function getLocalStoragePropertyDescriptor() {
     const frame = document.createElement('frame');
     frame.src = 'about:blank';
@@ -41,7 +41,6 @@ const inject = async () => {
 };
 
 // Delay actual injection to fix FF issues
-// setTimeout(inject, 100);
 
 let el = document.createElement('script');
 
