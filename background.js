@@ -5,11 +5,6 @@ const cspAllowAll = [
   'font-src'
 ];
 
-const corsAllowUrls = [
-  'https://github.com/GooseMod/GooseMod/releases/download/dev/index.js',
-  'https://github-releases.githubusercontent.com/'
-];
-
 chrome.webRequest.onHeadersReceived.addListener(({ responseHeaders, url }) => {
   let csp = responseHeaders.find((x) => x.name === 'content-security-policy');
 
@@ -22,20 +17,15 @@ chrome.webRequest.onHeadersReceived.addListener(({ responseHeaders, url }) => {
     csp.value = csp.value.replace(/'nonce-.*?' /, '');
   }
 
-  if (corsAllowUrls.some((x) => url.startsWith(x))) {
-    let cors = responseHeaders.find((x) => x.name === 'access-control-allow-origin');
-    cors.value = '*';
-  }
-
-  console.log(csp);
-
 	return {
     responseHeaders
   };
 },
 
   {
-    urls: ["*://*.discord.com/*"]
+    urls: [
+      '*://*.discord.com/*'
+    ]
   },
 
   ['blocking', 'responseHeaders']
