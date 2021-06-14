@@ -1,5 +1,5 @@
 {
-    "name": "GooseMod Extension",
+    "name": "GooseMod for Web",
     "description": "Injects GooseMod into Discord's web client",
 
     "version": "0.4.0",
