@@ -51,15 +51,11 @@ document.addEventListener('gmes_set', ({ key, value }) => {
   const obj = {}; // Create object for set
   obj[key] = value;
 
-  chrome.storage.local.set(obj);
-
-  // chrome.runtime.sendMessage({ storage: { type: 'set', key, value } }); // Actually store change
+  chrome.storage.local.set(obj); // Actually store change
 });
 
 document.addEventListener('gmes_remove', ({ key }) => {
   delete storageCache[key]; // Repopulate cache with updated value
 
-  chrome.storage.local.remove(key);
-
-  // chrome.runtime.sendMessage({ storage: { type: 'remove', key } }); // Actually store change
+  chrome.storage.local.remove(key); // Actually store change
 });
