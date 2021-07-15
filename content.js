@@ -42,7 +42,7 @@ chrome.runtime.sendMessage({ storage: { type: 'get' } }, (response) => {
 
 
 document.addEventListener('gmes_get', ({ }) => {
-  document.dispatchEvent(new CustomEvent('gmes_get_return', storageCache));
+  document.dispatchEvent(new CustomEvent('gmes_get_return', { detail: storageCache }));
 });
 
 document.addEventListener('gmes_set', ({ key, value }) => {
