@@ -58,7 +58,10 @@ chrome.storage.local.get(null, (data) => {
 
 
 document.addEventListener('gmes_get', ({ }) => {
-  document.dispatchEvent(new CustomEvent('gmes_get_return', { detail: storageCache }));
+  document.dispatchEvent(new CustomEvent('gmes_get_return', {
+    // Firefox requires cloneInto as doesn't like sending objects from content -> page
+    detail: typeof cloneInto === 'undefined' ? storageCache : cloneInto(storageCache, window) 
+  }));
 });
 
 document.addEventListener('gmes_set', ({ detail: { key, value }}) => {
