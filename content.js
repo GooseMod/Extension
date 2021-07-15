@@ -45,7 +45,7 @@ document.addEventListener('gmes_get', ({ }) => {
   document.dispatchEvent(new CustomEvent('gmes_get_return', { detail: storageCache }));
 });
 
-document.addEventListener('gmes_set', ({ key, value }) => {
+document.addEventListener('gmes_set', ({ detail: { key, value }}) => {
   storageCache[key] = value; // Repopulate cache with updated value
   
   const obj = {}; // Create object for set
@@ -54,7 +54,7 @@ document.addEventListener('gmes_set', ({ key, value }) => {
   chrome.storage.local.set(obj); // Actually store change
 });
 
-document.addEventListener('gmes_remove', ({ key }) => {
+document.addEventListener('gmes_remove', ({ detail: { key }}) => {
   delete storageCache[key]; // Repopulate cache with updated value
 
   chrome.storage.local.remove(key); // Actually store change
