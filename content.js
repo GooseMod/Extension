@@ -32,6 +32,21 @@ let storageCache = {};
 chrome.storage.local.get(null, (data) => {
   storageCache = data;
 
+  if (Object.keys(storageCache).length === 0 && Object.keys(localStorage).find((x) => x.toLowerCase().startsWith('goosemod'))) { // Nothing stored in Extension storage and something GM in localStorage - migrate from LS to Ext
+    const gmKeys = Object.keys(localStorage).filter((x) => x.toLowerCase().startsWith('goosemod'));
+
+    const setObj = {};
+
+    for (const k of gmKeys) {
+      setObj[k] = localStorage.getItem(k);
+      localStorage.removeItem(k);
+    }
+
+    console.log('[GooseMod For Web] Migrated from localStorage to Extension', setObj);
+
+    chrome.storage.local.set(setObj);
+  }
+
 
   const el = document.createElement('script');
 
