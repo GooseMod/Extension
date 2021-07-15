@@ -35,7 +35,7 @@ chrome.runtime.sendMessage({ storage: { type: 'get' } }, (response) => {
 
   const el = document.createElement('script');
 
-  el.appendChild(document.createTextNode(`(${inject.toString()})(${JSON.stringify(storageCache['goosemodUntetheredBranch'] || 'release')})`));
+  el.appendChild(document.createTextNode(`(${inject.toString()})(${JSON.stringify(storageCache['goosemodUntetheredBranch'] || 'release')}, ${JSON.stringify(extVersion)})`));
 
   document.body.appendChild(el);
 });
