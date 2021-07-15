@@ -27,10 +27,10 @@ const inject = async (branch, version) => {
 
 
 // Extension Storage (v10)
-let storageCache = {};
+const storageCache = {};
 
 chrome.storage.local.get(null, (data) => {
-  storageCache = data;
+  Object.assign(storageCache, data);
 
   if (Object.keys(storageCache).length === 0 && Object.keys(localStorage).find((x) => x.toLowerCase().startsWith('goosemod'))) { // Nothing stored in Extension storage and something GM in localStorage - migrate from LS to Ext
     const gmKeys = Object.keys(localStorage).filter((x) => x.toLowerCase().startsWith('goosemod'));
@@ -44,6 +44,7 @@ chrome.storage.local.get(null, (data) => {
 
     console.log('[GooseMod For Web] Migrated from localStorage to Extension', setObj);
 
+    Object.assign(storageCache, setObj);
     chrome.storage.local.set(setObj);
   }
 
