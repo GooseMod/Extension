@@ -1,31 +1,15 @@
-const inject = async (branch) => {
+const extVersion = chrome.runtime.getManifest().version;
+
+const inject = async (branch, version) => {
   console.log('[GooseMod for Web] Injecting...');
 
-  /* // Re-define localStorage as Discord removes it
-  function getLocalStoragePropertyDescriptor() {
-    const frame = document.createElement('frame');
-    frame.src = 'about:blank';
-  
-    document.body.appendChild(frame);
-  
-    let r = Object.getOwnPropertyDescriptor(frame.contentWindow, 'localStorage');
-  
-    frame.remove();
-  
-    return r;
-  }
-  
-  Object.defineProperty(window, 'localStorage', getLocalStoragePropertyDescriptor());
-  
-  console.log('[GooseMod for Web] Redefined localStorage'); */
+  window.gmExtension = version;
 
   const branchURLs = {
     release: 'https://api.goosemod.com/inject.js',
     dev: 'https://updates.goosemod.com/guapi/goosemod/dev',
     local: 'http://localhost:1234/index.js'
   };
-  
-  // const branch = storageCache['goosemodUntetheredBranch'] || 'local'; // 'release';
 
   console.log('[GooseMod for Web] Branch =', branch);
   console.log('[GooseMod for Web] JS Url =', branchURLs[branch]);
@@ -48,7 +32,6 @@ let storageCache = {};
 chrome.runtime.sendMessage({ storage: { type: 'get' } }, (response) => {
   storageCache = response; // Set storageCache
 
-  // Delay actual injection to fix FF issues
 
   const el = document.createElement('script');
 
