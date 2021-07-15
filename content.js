@@ -29,8 +29,8 @@ const inject = async (branch, version) => {
 // Extension Storage (v10)
 let storageCache = {};
 
-chrome.runtime.sendMessage({ storage: { type: 'get' } }, (response) => {
-  storageCache = response; // Set storageCache
+chrome.storage.local.get(null, (data) => {
+  storageCache = data;
 
 
   const el = document.createElement('script');
@@ -47,10 +47,19 @@ document.addEventListener('gmes_get', ({ }) => {
 
 document.addEventListener('gmes_set', ({ key, value }) => {
   storageCache[key] = value; // Repopulate cache with updated value
-  chrome.runtime.sendMessage({ storage: { type: 'set', key, value } }); // Actually store change
+  
+  const obj = {}; // Create object for set
+  obj[key] = value;
+
+  chrome.storage.local.set(obj);
+
+  // chrome.runtime.sendMessage({ storage: { type: 'set', key, value } }); // Actually store change
 });
 
 document.addEventListener('gmes_remove', ({ key }) => {
   delete storageCache[key]; // Repopulate cache with updated value
-  chrome.runtime.sendMessage({ storage: { type: 'remove', key } }); // Actually store change
+
+  chrome.storage.local.remove(key);
+
+  // chrome.runtime.sendMessage({ storage: { type: 'remove', key } }); // Actually store change
 });
